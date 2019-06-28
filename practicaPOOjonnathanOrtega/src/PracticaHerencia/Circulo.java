@@ -10,5 +10,11 @@ package PracticaHerencia;
  * @author ISTLOJA12
  */
 public class Circulo extends Figuratridimencional {
-    
+    public double calculararea(double radio){
+        return Math.PI * Math.pow(radio,2);
+        
+    }
+    public double calcularperimetro(double radio){
+        return 2*Math.PI*radio;
+    }
 }
