@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Ejecutar {
     public static void main(String[] args) {
         Scanner entrada =new Scanner (System.in);
-        System.out.println("Ingrese 1-circulo,Ingrese 2-cuadrado,Ingrese 3-triangulo");
+        System.out.println("Ingrese 1-circulo,Ingrese 2-cuadrado,Ingrese 3-triangulo Ingrese 4-cubo Ingrese 5-esfera Ingrese 6-tetraedro ");
         int Num= entrada.nextInt();
         switch (Num){    //para un numero determinado      es para cualquier variable 
             case 1:   //identificar el valor 
@@ -42,9 +42,33 @@ public class Ejecutar {
                 double Lado2=entrada.nextDouble();
                 double Lado3=entrada.nextDouble();
                 Triangulo objeto3=new Triangulo();
+                
                 double sacararea=objeto3.sacararea(base, altura);
                 double sacarperimetro=objeto3.sacarperimetro(Lado1, Lado2, Lado3);
                 System.out.println("el area del triangulo es "+sacararea+"el perimetro del triangulo es"+sacarperimetro);
+                break;
+            case 4:
+                System.out.println("ingrese la longitud del cubo");
+                 double cubo=entrada.nextDouble();
+                 System.out.println("ingrese el volumen");
+                 double volumen=entrada.nextDouble();
+                Cubo objeto4 = new Cubo();
+                double calcularlongitud=objeto4.calcularlongitudcubo(cubo);
+                        
+                double calcularvolumencubo=objeto4.calcularvolumencubo(volumen);
+                System.out.println("longitud"+calcularlongitud+"volumen"+calcularvolumencubo);
+                break;
+            case 5:
+                System.out.println("ingrese el radio para la esfera");
+                double radioes=entrada.nextDouble();
+                
+                
+               
+                 Esfera objeto5 = new Esfera();
+                 
+                double calcularradio=objeto5.calcularRadio(radioes);
+                double calcularvolumen=objeto5.calcularVolumen(radioes);
+                System.out.println("radio"+calcularradio+"volumen"+calcularvolumen);
                 break;
             default:   //no escojemos nimgun valor 
                 System.out.println("ingrese un numero correcto");

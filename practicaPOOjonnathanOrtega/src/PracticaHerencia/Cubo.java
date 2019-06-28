@@ -9,6 +9,11 @@ package PracticaHerencia;
  *
  * @author ISTLOJA12
  */
-public class Cubo extends Esfera{
-    
+public class Cubo extends Figuratridimencional{
+    public double calcularlongitudcubo(double cubo){
+        return Math.pow (cubo,cubo);
+    }
+    public double calcularvolumencubo(double volumen){
+        return volumen*volumen*volumen;
+    }
 }
