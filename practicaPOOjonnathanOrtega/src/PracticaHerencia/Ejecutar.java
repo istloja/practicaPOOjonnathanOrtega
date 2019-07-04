@@ -70,9 +70,24 @@ public class Ejecutar {
                 double calcularvolumen=objeto5.calcularVolumen(radioes);
                 System.out.println("radio"+calcularradio+"volumen"+calcularvolumen);
                 break;
-            default:   //no escojemos nimgun valor 
+                
+                
+            case 6:
+                System.out.println("ingrese numero para el lado");
+                double ladotetra=entrada.nextDouble();
+                System.out.println("ingrese numero para la arista");
+                double aristatetra=entrada.nextDouble();
+                
+                Tetraedro objeto6=new Tetraedro();
+                double calcularareatetra=objeto6.calcularAREA(ladotetra);
+                double calcularvolumentetra=objeto6.calcularVOLUMEN(aristatetra);
+                System.out.println("lado"+ calcularareatetra+"arista"+calcularvolumentetra);
+                break;
+                default:   //no escojemos nimgun valor 
                 System.out.println("ingrese un numero correcto");
                 break;
+                
+                
             
         }
         
