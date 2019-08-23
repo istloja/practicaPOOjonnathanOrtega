@@ -117,13 +117,13 @@ public class Jugador implements Serializable {
     }
 
     public int mayorEdad(List<Jugador> lista) {
-        int edadmaxima=lista.get(0).getEdad();
+        int edadmaxima = lista.get(0).getEdad();
 
         for (Jugador jugador : lista) {
             if (jugador.getEdad() > edadmaxima) {
-                edadmaxima=jugador.getEdad();
-            } 
-     
+                edadmaxima = jugador.getEdad();
+            }
+
         }
         return edadmaxima;
 
@@ -157,10 +157,43 @@ public class Jugador implements Serializable {
 
     }
 
+    public Jugador debut(List<Jugador> lista) {
+        Jugador añodebut = lista.get(0);
+        for (Jugador jugador : lista) {
+            if (jugador.getAñodedebut() > añodebut.getAñodedebut()) {
+                añodebut = jugador;
+            }
+
+        }
+        return añodebut;
+
+    }
+
+//    public Jugador titulos(List<Jugador> lista) {
+//        Jugador mastitulo = lista.get(0);
+//        for (Jugador jugador : lista) {
+//            if (jugador.getEquipo().getNumerotitulos() > mastitulo.getEquipo().getNumerotitulos()) {
+//                mastitulo = jugador;
+//            }
+//            return mastitulo;
+//        }
+//    }
+
+    public Jugador masGoles(List<Jugador> lista) {
+        Jugador mayorgoles = lista.get(0);
+        for (Jugador jugador : lista) {
+            if (jugador.getNumerodegoles() > mayorgoles.getNumerodegoles()) {
+                mayorgoles = jugador;
+            }
+        }
+
+        return mayorgoles;
+    }
+
     public void EscribirLista(String direccion, List<Jugador> lista) {
         try {
             ObjectOutputStream escritor = new ObjectOutputStream(new FileOutputStream(direccion));
-            //recorrer una lista y por cada vez que recorre se crea un objeto de la clase persona
+
             for (Jugador jugador : lista) {
                 escritor.writeObject(jugador);
             }
@@ -183,8 +216,13 @@ public class Jugador implements Serializable {
         lista.add(objeto3);
         int a = lista.size();
         System.out.println();
-        objeto.EscribirLista("‪C:\\Users\\ISTLOJA12\\Desktop\\ejemplo.txt", lista);
+        objeto.leerJugador("‪C:\\Users\\ISTLOJA12\\Desktop\\ejemplo.txt");
         objeto.LeerLista("‪C:\\Users\\ISTLOJA12\\Desktop\\ejemplo.txt");
+        objeto.EscribirLista("‪C:\\Users\\ISTLOJA12\\Desktop\\ejemplo.txt", lista);
+        //objeto.edadMenos(lista);
 
+        List<Jugador> al = objeto.leerJugador("‪C:\\Users\\ISTLOJA12\\Desktop\\ejemplo.txt");
+        System.out.println(objeto.debut(al).getAñodedebut());
+        //System.out.println(objeto.titulos(al).getNumerodegoles());
     }
 }
