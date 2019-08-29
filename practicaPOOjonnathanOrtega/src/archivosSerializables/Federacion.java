@@ -110,8 +110,8 @@ public Federacion masnumEquipo(List<Federacion> lista) {
 
         int a = Lista.size();
         System.out.println(a);
-        objeto.escribirLista("‪C:\\Users\\ISTLOJA12\\Desktop\\f.txt", Lista);
-        //List<Federacion> b = objeto.leerfede("‪C:\\Users\\ISTLOJA12\\Desktop\\f.txt");
-        //System.out.println("el equipo mas grande es la federacion " + objeto.masnumEquipo(b).getNombre() + " con " + objeto.masnumEquipo(b).getNumeroequipo()+ " Equipos");
+        objeto.escribirLista("‪‪C:\\Users\\ISTLOJA12\\Desktop/1.txt", Lista);
+        List<Federacion> b = objeto.leerfede("‪‪C:\\Users\\ISTLOJA12\\Desktop/1.txt");
+        System.out.println("el equipo mas grande es la federacion " + objeto.masnumEquipo(b).getNombre() + " con " + objeto.masnumEquipo(b).getNumeroequipo()+ " Equipos");
     }
 }

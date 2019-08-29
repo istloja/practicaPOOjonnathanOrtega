@@ -37,4 +37,6 @@ public class ejecutarmayu {
     private String minuculaAmayuscula(String texto) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+   
 }

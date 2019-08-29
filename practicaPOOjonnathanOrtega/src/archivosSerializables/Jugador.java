@@ -26,17 +26,27 @@ public class Jugador implements Serializable {
     private int numerodegoles;
     private int añodedebut;
     private Equipo equipo;
+    private int perdidasbalon;
+    private int asistencias;
+    private double kmrecorridos;
+    private int pasescompletados;
+    private int fallosgol;
 
     public Jugador() {
     }
 
-    public Jugador(String nombre, String apellido, int edad, int numerodegoles, int añodedebut, Equipo equipo) {
+    public Jugador(String nombre, String apellido, int edad, int numerodegoles, int añodedebut, Equipo equipo, int perdidasbalon, int asistencias, double kmrecorridos, int pasescompletados, int fallosgol) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
         this.numerodegoles = numerodegoles;
         this.añodedebut = añodedebut;
         this.equipo = equipo;
+        this.perdidasbalon = perdidasbalon;
+        this.asistencias = asistencias;
+        this.kmrecorridos = kmrecorridos;
+        this.pasescompletados = pasescompletados;
+        this.fallosgol = fallosgol;
     }
 
     public String getNombre() {
@@ -85,6 +95,46 @@ public class Jugador implements Serializable {
 
     public void setEquipo(Equipo equipo) {
         this.equipo = equipo;
+    }
+
+    public int getPerdidasbalon() {
+        return perdidasbalon;
+    }
+
+    public void setPerdidasbalon(int perdidasbalon) {
+        this.perdidasbalon = perdidasbalon;
+    }
+
+    public int getAsistencias() {
+        return asistencias;
+    }
+
+    public void setAsistencias(int asistencias) {
+        this.asistencias = asistencias;
+    }
+
+    public double getKmrecorridos() {
+        return kmrecorridos;
+    }
+
+    public void setKmrecorridos(double kmrecorridos) {
+        this.kmrecorridos = kmrecorridos;
+    }
+
+    public int getPasescompletados() {
+        return pasescompletados;
+    }
+
+    public void setPasescompletados(int pasescompletados) {
+        this.pasescompletados = pasescompletados;
+    }
+
+    public int getFallosgol() {
+        return fallosgol;
+    }
+
+    public void setFallosgol(int fallosgol) {
+        this.fallosgol = fallosgol;
     }
 
     public List<Jugador> leerJugador(String direccion) {
@@ -178,7 +228,6 @@ public class Jugador implements Serializable {
 //            return mastitulo;
 //        }
 //    }
-
     public Jugador masGoles(List<Jugador> lista) {
         Jugador mayorgoles = lista.get(0);
         for (Jugador jugador : lista) {
@@ -203,11 +252,57 @@ public class Jugador implements Serializable {
         }
     }
 
+    public double porcentajeAcierto(Jugador jugadorp) {
+        return (jugadorp.getNumerodegoles() + jugadorp.getAsistencias()) / jugadorp.getFallosgol();
+    }
+
+    public double porcentajeefectividad(Jugador jugadorfec) {
+        return (jugadorfec.getPasescompletados() / jugadorfec.getPerdidasbalon());
+    }
+
+    public double eficienciaJugador(Jugador jugadoref) {
+        return porcentajeAcierto(jugadoref) + porcentajeefectividad(jugadoref) + jugadoref.getKmrecorridos();
+    }
+
+    public Jugador Mayoreficiebcia(List<Jugador> lista) {
+        Jugador mayorefectividad = lista.get(0);
+        for (Jugador jugador : lista) {
+            if (eficienciaJugador(jugador) > eficienciaJugador(mayorefectividad)) {
+                mayorefectividad = jugador;
+
+            }
+
+        }
+        return mayorefectividad;
+    }
+
+    public Jugador maPorcentajedeAcierto(List<Jugador> lista) {
+        Jugador mayorporcentaje = lista.get(0);
+        for (Jugador jugador : lista) {
+            if (porcentajeAcierto(jugador) > porcentajeefectividad(mayorporcentaje)) {
+                mayorporcentaje = jugador;
+            }
+
+        }
+        return mayorporcentaje;
+
+    }
+
+    public Jugador maPorcentajeefectividad(List<Jugador> lista) {
+        Jugador maPorcentajeefectividad = lista.get(0);
+        for (Jugador jugador : lista) {
+            if (porcentajeefectividad(jugador) > porcentajeefectividad(maPorcentajeefectividad)) {
+                maPorcentajeefectividad = jugador;
+            }
+        }
+        return maPorcentajeefectividad;
+    }
+
     public static void main(String[] args) {
-        Jugador objeto = new Jugador("Cristiano", "Ronaldo", 33, 520, 2005, new Equipo("Juventus", 20, "Turin"));
-        Jugador objeto1 = new Jugador("Lionel", "Messi", 31, 600, 2007, new Equipo("Barcelona", 30, "Barcelona"));
-        Jugador objeto2 = new Jugador("Neymar", "Jr", 28, 200, 2011, new Equipo("PSG", 10, "Paris"));
-        Jugador objeto3 = new Jugador("Eden", "Hazard", 27, 590, 2010, new Equipo("Real Madrid", 30, "Madrid"));
+        Jugador objeto = new Jugador("Cristiano", "Ronaldo", 33, 520, 2005, new Equipo("Juventus", 20, "Turin"), 5, 7, 2.4, 8, 5);
+        Jugador objeto1 = new Jugador("Lionel", "Messi", 31, 600, 2007, new Equipo("Barcelona", 30, "Barcelona"), 15, 47, 22.4, 18, 25);
+        Jugador objeto2 = new Jugador("Neymar", "Jr", 28, 200, 2011, new Equipo("PSG", 10, "Paris"), 15, 47, 22.4, 18, 25);
+        Jugador objeto3 = new Jugador("Eden", "Hazard", 27, 590, 2010, new Equipo("Real Madrid", 30, "Madrid"), 15, 47, 22.4, 18, 25);
 
         List<Jugador> lista = new ArrayList<>();
         lista.add(objeto);
@@ -216,13 +311,15 @@ public class Jugador implements Serializable {
         lista.add(objeto3);
         int a = lista.size();
         System.out.println();
-        objeto.leerJugador("‪C:\\Users\\ISTLOJA12\\Desktop\\ejemplo.txt");
-        objeto.LeerLista("‪C:\\Users\\ISTLOJA12\\Desktop\\ejemplo.txt");
-        objeto.EscribirLista("‪C:\\Users\\ISTLOJA12\\Desktop\\ejemplo.txt", lista);
+        objeto.leerJugador("‪C:\\Users\\ISTLOJA12\\Documents\\ejemplo.txt");
+        objeto.LeerLista("‪C:\\Users\\ISTLOJA12\\Documents\\ejemplo.txt");
+        objeto.EscribirLista("‪C:\\Users\\ISTLOJA12\\Documents\\ejemplo.txt", lista);
         //objeto.edadMenos(lista);
 
-        List<Jugador> al = objeto.leerJugador("‪C:\\Users\\ISTLOJA12\\Desktop\\ejemplo.txt");
+        List<Jugador> al = objeto.leerJugador("‪C:\\Users\\ISTLOJA12\\Documents\\ejemplo.txt");
         System.out.println(objeto.debut(al).getAñodedebut());
         //System.out.println(objeto.titulos(al).getNumerodegoles());
+        System.out.println("el jugador con mas porcentaje acierto"+objeto.maPorcentajedeAcierto(lista).getNombre());
+        System.out.println("el jugador conmas efectividad"+objeto.maPorcentajeefectividad(lista).getNombre());
     }
 }
