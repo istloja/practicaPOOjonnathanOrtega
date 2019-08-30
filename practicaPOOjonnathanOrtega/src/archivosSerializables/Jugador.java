@@ -298,17 +298,60 @@ public class Jugador implements Serializable {
         return maPorcentajeefectividad;
     }
 
+    public int numcaracteres(Jugador jugador) {
+        return jugador.getNombre().length() + jugador.getApellido().length();
+    }
+
+    public Jugador mayorCaracter(List<Jugador> lista) {
+        Jugador mayorCaracter = lista.get(0);
+        for (Jugador jugador : lista) {
+            if (numcaracteres(jugador) > numcaracteres(mayorCaracter)) {
+                mayorCaracter = jugador;
+            }
+
+        }
+        return mayorCaracter;
+    }
+
+    public int nucaracteres(Jugador jugador) {
+        return jugador.getNombre().length() + jugador.getApellido().length();
+    }
+
+    public Jugador menorCaracter(List<Jugador> lista) {
+        Jugador menorCaracter = lista.get(0);
+        for (Jugador jugador : lista) {
+            if (numcaracteres(jugador) < numcaracteres(menorCaracter)) {
+                menorCaracter = jugador;
+            }
+
+        }
+        return menorCaracter;
+    }
+
     public static void main(String[] args) {
         Jugador objeto = new Jugador("Cristiano", "Ronaldo", 33, 520, 2005, new Equipo("Juventus", 20, "Turin"), 5, 7, 2.4, 8, 5);
         Jugador objeto1 = new Jugador("Lionel", "Messi", 31, 600, 2007, new Equipo("Barcelona", 30, "Barcelona"), 15, 47, 22.4, 18, 25);
         Jugador objeto2 = new Jugador("Neymar", "Jr", 28, 200, 2011, new Equipo("PSG", 10, "Paris"), 15, 47, 22.4, 18, 25);
         Jugador objeto3 = new Jugador("Eden", "Hazard", 27, 590, 2010, new Equipo("Real Madrid", 30, "Madrid"), 15, 47, 22.4, 18, 25);
+        Jugador objeto4 = new Jugador("edison", "cavani", 27, 59, 2010, new Equipo("paris", 3, "psg"), 15, 4, 22.4, 18, 25);
+        Jugador objeto5 = new Jugador("diego", "maradona", 27, 90, 2010, new Equipo("boca", 30, "argentina"), 15, 47, 22.4, 18, 25);
+        Jugador objeto6 = new Jugador("antonio", "valencia", 27, 390, 2010, new Equipo("ecuador", 30, "Madrid"), 15, 47, 22.4, 18, 25);
+        Jugador objeto7 = new Jugador("diablito", "lara", 27, 590, 2010, new Equipo("ecuador", 30, "Madrid"), 15, 47, 22.4, 18, 25);
+        Jugador objeto8 = new Jugador("Ede", "zard", 27, 5, 2010, new Equipo("ecuador", 30, "Madrid"), 15, 47, 22.4, 18, 25);
+        Jugador objeto9 = new Jugador("adan", "loja", 27, 93, 2010, new Equipo("Real Madrid", 30, "Madrid"), 15, 47, 22.4, 18, 25);
 
         List<Jugador> lista = new ArrayList<>();
         lista.add(objeto);
         lista.add(objeto1);
         lista.add(objeto2);
         lista.add(objeto3);
+        lista.add(objeto4);
+        lista.add(objeto5);
+        lista.add(objeto6);
+        lista.add(objeto7);
+        lista.add(objeto8);
+        lista.add(objeto9);
+
         int a = lista.size();
         System.out.println();
         objeto.leerJugador("‪C:\\Users\\ISTLOJA12\\Documents\\ejemplo.txt");
@@ -319,7 +362,9 @@ public class Jugador implements Serializable {
         List<Jugador> al = objeto.leerJugador("‪C:\\Users\\ISTLOJA12\\Documents\\ejemplo.txt");
         System.out.println(objeto.debut(al).getAñodedebut());
         //System.out.println(objeto.titulos(al).getNumerodegoles());
-        System.out.println("el jugador con mas porcentaje acierto"+objeto.maPorcentajedeAcierto(lista).getNombre());
-        System.out.println("el jugador conmas efectividad"+objeto.maPorcentajeefectividad(lista).getNombre());
+        System.out.println("el jugador con mas porcentaje acierto" + objeto.maPorcentajedeAcierto(lista).getNombre());
+        System.out.println("el jugador conmas efectividad" + objeto.maPorcentajeefectividad(lista).getNombre());
+        System.out.println("mas caracteres" + objeto.mayorCaracter(lista).getNombre() + objeto.mayorCaracter(lista).getApellido());
+        System.out.println("menor caracteres" + objeto.menorCaracter(lista).getNombre() + objeto.menorCaracter(lista).getApellido());
     }
 }
