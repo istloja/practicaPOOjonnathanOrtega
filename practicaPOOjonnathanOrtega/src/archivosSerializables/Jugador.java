@@ -5,7 +5,6 @@
  */
 package archivosSerializables;
 
-import archivos_serializables.Persona;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -14,39 +13,86 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  *
- * @author ISTLOJA12
+ * @author its
  */
 public class Jugador implements Serializable {
 
-    private String nombre;
-    private String apellido;
-    private int edad;
-    private int numerodegoles;
-    private int añodedebut;
-    private Equipo equipo;
-    private int perdidasbalon;
+    private int perdidas_balon;
     private int asistencias;
-    private double kmrecorridos;
-    private int pasescompletados;
-    private int fallosgol;
+    private double km_recorridos;
+    private int pases_completados;
+    private int fallos_gol;
+
+    private String nombre;
+
+    private String apellido;
+
+    private int edad;
+
+    private int numeroGoles;
+
+    private int añoDebut;
+
+    private Equipo equipo;
 
     public Jugador() {
     }
 
-    public Jugador(String nombre, String apellido, int edad, int numerodegoles, int añodedebut, Equipo equipo, int perdidasbalon, int asistencias, double kmrecorridos, int pasescompletados, int fallosgol) {
+    public Jugador(int perdidas_balon, int asistencias, double km_recorridos, int pases_completados, int fallos_gol, String nombre, String apellido, int edad, int numeroGoles, int añoDebut, Equipo equipo) {
+        this.perdidas_balon = perdidas_balon;
+        this.asistencias = asistencias;
+        this.km_recorridos = km_recorridos;
+        this.pases_completados = pases_completados;
+        this.fallos_gol = fallos_gol;
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
-        this.numerodegoles = numerodegoles;
-        this.añodedebut = añodedebut;
+        this.numeroGoles = numeroGoles;
+        this.añoDebut = añoDebut;
         this.equipo = equipo;
-        this.perdidasbalon = perdidasbalon;
+    }
+
+    public int getPerdidas_balon() {
+        return perdidas_balon;
+    }
+
+    public void setPerdidas_balon(int perdidas_balon) {
+        this.perdidas_balon = perdidas_balon;
+    }
+
+    public int getAsistencias() {
+        return asistencias;
+    }
+
+    public void setAsistencias(int asistencias) {
         this.asistencias = asistencias;
-        this.kmrecorridos = kmrecorridos;
-        this.pasescompletados = pasescompletados;
-        this.fallosgol = fallosgol;
+    }
+
+    public double getKm_recorridos() {
+        return km_recorridos;
+    }
+
+    public void setKm_recorridos(double km_recorridos) {
+        this.km_recorridos = km_recorridos;
+    }
+
+    public int getPases_completados() {
+        return pases_completados;
+    }
+
+    public void setPases_completados(int pases_completados) {
+        this.pases_completados = pases_completados;
+    }
+
+    public int getFallos_gol() {
+        return fallos_gol;
+    }
+
+    public void setFallos_gol(int fallos_gol) {
+        this.fallos_gol = fallos_gol;
     }
 
     public String getNombre() {
@@ -73,20 +119,20 @@ public class Jugador implements Serializable {
         this.edad = edad;
     }
 
-    public int getNumerodegoles() {
-        return numerodegoles;
+    public int getNumeroGoles() {
+        return numeroGoles;
     }
 
-    public void setNumerodegoles(int numerodegoles) {
-        this.numerodegoles = numerodegoles;
+    public void setNumeroGoles(int numeroGoles) {
+        this.numeroGoles = numeroGoles;
     }
 
-    public int getAñodedebut() {
-        return añodedebut;
+    public int getAñoDebut() {
+        return añoDebut;
     }
 
-    public void setAñodedebut(int añodedebut) {
-        this.añodedebut = añodedebut;
+    public void setAñoDebut(int añoDebut) {
+        this.añoDebut = añoDebut;
     }
 
     public Equipo getEquipo() {
@@ -97,274 +143,236 @@ public class Jugador implements Serializable {
         this.equipo = equipo;
     }
 
-    public int getPerdidasbalon() {
-        return perdidasbalon;
-    }
-
-    public void setPerdidasbalon(int perdidasbalon) {
-        this.perdidasbalon = perdidasbalon;
-    }
-
-    public int getAsistencias() {
-        return asistencias;
-    }
-
-    public void setAsistencias(int asistencias) {
-        this.asistencias = asistencias;
-    }
-
-    public double getKmrecorridos() {
-        return kmrecorridos;
-    }
-
-    public void setKmrecorridos(double kmrecorridos) {
-        this.kmrecorridos = kmrecorridos;
-    }
-
-    public int getPasescompletados() {
-        return pasescompletados;
-    }
-
-    public void setPasescompletados(int pasescompletados) {
-        this.pasescompletados = pasescompletados;
-    }
-
-    public int getFallosgol() {
-        return fallosgol;
-    }
-
-    public void setFallosgol(int fallosgol) {
-        this.fallosgol = fallosgol;
-    }
-
-    public List<Jugador> leerJugador(String direccion) {
-        List<Jugador> lista = new ArrayList<>();
+    //
+    public void escribirLista(String direccion, List<Jugador> lista) {
         try {
-            ObjectInputStream lector = new ObjectInputStream(new FileInputStream(direccion));
-            Object auxiliar = lector.readObject();
-            while (auxiliar != null) {
-                Jugador objeto = (Jugador) auxiliar;
-                lista.add(objeto);
-                auxiliar = lector.readObject();
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return lista;
-    }
-
-    public void LeerLista(String direccion) {
-        try {
-            ObjectInputStream lector = new ObjectInputStream(new FileInputStream(direccion));
-            Object auxiliar = lector.readObject();
-            while (auxiliar != null) {
-                Jugador objeto = (Jugador) auxiliar;
-                auxiliar = lector.readObject();
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-
-    public int mayorEdad(List<Jugador> lista) {
-        int edadmaxima = lista.get(0).getEdad();
-
-        for (Jugador jugador : lista) {
-            if (jugador.getEdad() > edadmaxima) {
-                edadmaxima = jugador.getEdad();
-            }
-
-        }
-        return edadmaxima;
-
-    }
-
-    public int menorEdad(List<Jugador> lista) {
-        int edadminima = 27;
-
-        for (Jugador jugador : lista) {
-            if (jugador.getEdad() > edadminima) {
-                System.out.println(" no joven ");
-            } else {
-                System.out.println(" es joven ");
-            }
-        }
-        return edad;
-
-    }
-
-    public int numeroGoles(List<Jugador> lista, String nombre) {
-        int goles = 600;
-
-        for (Jugador jugador : lista) {
-            if (jugador.getNumerodegoles() < goles) {
-                System.out.println(jugador.getNombre() + " menor goles");
-            } else {
-                System.out.println("mas goles ");
-            }
-        }
-        return edad;
-
-    }
-
-    public Jugador debut(List<Jugador> lista) {
-        Jugador añodebut = lista.get(0);
-        for (Jugador jugador : lista) {
-            if (jugador.getAñodedebut() > añodebut.getAñodedebut()) {
-                añodebut = jugador;
-            }
-
-        }
-        return añodebut;
-
-    }
-
-//    public Jugador titulos(List<Jugador> lista) {
-//        Jugador mastitulo = lista.get(0);
-//        for (Jugador jugador : lista) {
-//            if (jugador.getEquipo().getNumerotitulos() > mastitulo.getEquipo().getNumerotitulos()) {
-//                mastitulo = jugador;
-//            }
-//            return mastitulo;
-//        }
-//    }
-    public Jugador masGoles(List<Jugador> lista) {
-        Jugador mayorgoles = lista.get(0);
-        for (Jugador jugador : lista) {
-            if (jugador.getNumerodegoles() > mayorgoles.getNumerodegoles()) {
-                mayorgoles = jugador;
-            }
-        }
-
-        return mayorgoles;
-    }
-
-    public void EscribirLista(String direccion, List<Jugador> lista) {
-        try {
-            ObjectOutputStream escritor = new ObjectOutputStream(new FileOutputStream(direccion));
-
+            ObjectOutputStream escr = new ObjectOutputStream(new FileOutputStream(direccion));
             for (Jugador jugador : lista) {
-                escritor.writeObject(jugador);
+                escr.writeObject(jugador);
             }
-            escritor.close();
+            escr.close();
         } catch (Exception e) {
-            System.out.println(" se podrucio un error " + e);
+            System.out.println("error" + e);
+
         }
     }
 
-    public double porcentajeAcierto(Jugador jugadorp) {
-        return (jugadorp.getNumerodegoles() + jugadorp.getAsistencias()) / jugadorp.getFallosgol();
+    public int nombreMascaracteres(Jugador jugador) {
+        return jugador.getNombre().length() + jugador.getApellido().length();
+
     }
 
-    public double porcentajeefectividad(Jugador jugadorfec) {
-        return (jugadorfec.getPasescompletados() / jugadorfec.getPerdidasbalon());
+    public Jugador jugadorMascaracteres(List<Jugador> lista) {
+        Jugador mayorcaracteres = lista.get(0);
+        for (Jugador jugador : lista) {
+            if (nombreMascaracteres(jugador) > nombreMascaracteres(mayorcaracteres)) {
+
+                mayorcaracteres = jugador;
+
+            }
+
+        }
+        return mayorcaracteres;
     }
 
-    public double eficienciaJugador(Jugador jugadoref) {
-        return porcentajeAcierto(jugadoref) + porcentajeefectividad(jugadoref) + jugadoref.getKmrecorridos();
+    public Jugador jugadorMenoscaracteres(List<Jugador> lista) {
+        Jugador mayorcaracteres = lista.get(0);
+        for (Jugador jugador : lista) {
+            if (nombreMascaracteres(jugador) < nombreMascaracteres(mayorcaracteres)) {
+
+                mayorcaracteres = jugador;
+
+            }
+
+        }
+        return mayorcaracteres;
     }
 
-    public Jugador Mayoreficiebcia(List<Jugador> lista) {
+    public double porcentajeAcierto(Jugador jugadorpro) {
+        return (jugadorpro.getNumeroGoles() + jugadorpro.getAsistencias()) / jugadorpro.getFallos_gol();
+
+    }
+
+    public double porcentajeEfectividad(Jugador jugadorfec) {
+        return (jugadorfec.getPases_completados() / jugadorfec.getPerdidas_balon());
+    }
+
+    public double porcentajeEficenciaJugagor(Jugador jugadorefici) {
+        return (porcentajeAcierto(jugadorefici) + porcentajeEfectividad(jugadorefici) + jugadorefici.getKm_recorridos());
+    }
+
+    public Jugador mayorEfectividad(List<Jugador> lista) {
         Jugador mayorefectividad = lista.get(0);
         for (Jugador jugador : lista) {
-            if (eficienciaJugador(jugador) > eficienciaJugador(mayorefectividad)) {
+            if (porcentajeEfectividad(jugador) > porcentajeEfectividad(mayorefectividad)) {
                 mayorefectividad = jugador;
 
             }
-
         }
+
         return mayorefectividad;
     }
 
-    public Jugador maPorcentajedeAcierto(List<Jugador> lista) {
-        Jugador mayorporcentaje = lista.get(0);
+    public Jugador mayorEficiencia(List<Jugador> lista) {
+        Jugador mayorAcierto = lista.get(0);
         for (Jugador jugador : lista) {
-            if (porcentajeAcierto(jugador) > porcentajeefectividad(mayorporcentaje)) {
-                mayorporcentaje = jugador;
+            if (porcentajeEficenciaJugagor(jugador) > porcentajeEficenciaJugagor(mayorAcierto)) {
+                mayorAcierto = jugador;
+
+            }
+        }
+
+        return mayorAcierto;
+    }
+
+    public Jugador mayorAcierto(List<Jugador> lista) {
+        Jugador mayoreAcierto = lista.get(0);
+        for (Jugador jugador : lista) {
+            if (porcentajeAcierto(jugador) > porcentajeAcierto(mayoreAcierto)) {
+                mayoreAcierto = jugador;
+
+            }
+        }
+
+        return mayoreAcierto;
+    }
+
+    public int edadMayor(List<Jugador> lista) {
+        int edadmax = lista.get(0).getEdad();
+        for (Jugador jugador : lista) {
+            if (jugador.getEdad() > edadmax) {
+
+                edadmax = jugador.getEdad();
+
+            } else {
+                System.out.println("");
             }
 
         }
-        return mayorporcentaje;
+
+        return edad;
 
     }
 
-    public Jugador maPorcentajeefectividad(List<Jugador> lista) {
-        Jugador maPorcentajeefectividad = lista.get(0);
+    public Jugador edadmenorObjeto(List<Jugador> lista) {
+        Jugador edadmenor = lista.get(0);
         for (Jugador jugador : lista) {
-            if (porcentajeefectividad(jugador) > porcentajeefectividad(maPorcentajeefectividad)) {
-                maPorcentajeefectividad = jugador;
+            if (edadmenor.getEdad() > jugador.getEdad()) {
+                edadmenor = jugador;
             }
         }
-        return maPorcentajeefectividad;
+        return edadmenor;
     }
 
-    public int numcaracteres(Jugador jugador) {
-        return jugador.getNombre().length() + jugador.getApellido().length();
-    }
-
-    public Jugador mayorCaracter(List<Jugador> lista) {
-        Jugador mayorCaracter = lista.get(0);
+    public Jugador masGoles(List<Jugador> lista) {
+        Jugador mayorgoles = lista.get(0);
         for (Jugador jugador : lista) {
-            if (numcaracteres(jugador) > numcaracteres(mayorCaracter)) {
-                mayorCaracter = jugador;
+            if (jugador.getNumeroGoles() > mayorgoles.getNumeroGoles()) {
+                mayorgoles = jugador;
             }
-
         }
-        return mayorCaracter;
+        return mayorgoles;
     }
 
-    public int nucaracteres(Jugador jugador) {
-        return jugador.getNombre().length() + jugador.getApellido().length();
-    }
-
-    public Jugador menorCaracter(List<Jugador> lista) {
-        Jugador menorCaracter = lista.get(0);
+    public Jugador debutoP(List<Jugador> lista) {
+        Jugador debuto = lista.get(0);
         for (Jugador jugador : lista) {
-            if (numcaracteres(jugador) < numcaracteres(menorCaracter)) {
-                menorCaracter = jugador;
+            if (debuto.getAñoDebut() > jugador.getAñoDebut()) {
+                debuto = jugador;
             }
 
         }
-        return menorCaracter;
+        return debuto;
     }
+
+    public Jugador titulos(List<Jugador> lista) {
+        Jugador mastitulo = lista.get(0);
+        for (Jugador jugador : lista) {
+            if (jugador.getEquipo().getNumerotitulos() > mastitulo.getEquipo().getNumerotitulos()) {
+                mastitulo = jugador;
+            }
+
+        }
+        return mastitulo;
+    }
+
+    public void leerLista(String direccion) {
+        try {
+            ObjectInputStream lector = new ObjectInputStream(new FileInputStream(direccion));
+            Object auxiliar = lector.readObject();
+            Jugador j1 = (Jugador) auxiliar;
+            System.out.println("nombre" + j1.nombre + "apellido" + j1.apellido);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public List<Jugador> leerJugadores(String url) {
+
+        List<Jugador> Lista = new ArrayList<>();
+        try {
+            ObjectInputStream lector = new ObjectInputStream(new FileInputStream(url));
+            Object auxiliar = lector.readObject();
+            while (auxiliar != null) {
+                Jugador j1 = (Jugador) auxiliar;
+                Lista.add(j1);
+                auxiliar = lector.readObject();
+            }
+        } catch (Exception e) {
+            System.out.println("error" + e);
+        }
+        return Lista;
+
+    }
+
+//    public Jugador equipoMasjugadores(List<Jugador> lista){
+//        
+//        
+//    }
 
     public static void main(String[] args) {
-        Jugador objeto = new Jugador("Cristiano", "Ronaldo", 33, 520, 2005, new Equipo("Juventus", 20, "Turin"), 5, 7, 2.4, 8, 5);
-        Jugador objeto1 = new Jugador("Lionel", "Messi", 31, 600, 2007, new Equipo("Barcelona", 30, "Barcelona"), 15, 47, 22.4, 18, 25);
-        Jugador objeto2 = new Jugador("Neymar", "Jr", 28, 200, 2011, new Equipo("PSG", 10, "Paris"), 15, 47, 22.4, 18, 25);
-        Jugador objeto3 = new Jugador("Eden", "Hazard", 27, 590, 2010, new Equipo("Real Madrid", 30, "Madrid"), 15, 47, 22.4, 18, 25);
-        Jugador objeto4 = new Jugador("edison", "cavani", 27, 59, 2010, new Equipo("paris", 3, "psg"), 15, 4, 22.4, 18, 25);
-        Jugador objeto5 = new Jugador("diego", "maradona", 27, 90, 2010, new Equipo("boca", 30, "argentina"), 15, 47, 22.4, 18, 25);
-        Jugador objeto6 = new Jugador("antonio", "valencia", 27, 390, 2010, new Equipo("ecuador", 30, "Madrid"), 15, 47, 22.4, 18, 25);
-        Jugador objeto7 = new Jugador("diablito", "lara", 27, 590, 2010, new Equipo("ecuador", 30, "Madrid"), 15, 47, 22.4, 18, 25);
-        Jugador objeto8 = new Jugador("Ede", "zard", 27, 5, 2010, new Equipo("ecuador", 30, "Madrid"), 15, 47, 22.4, 18, 25);
-        Jugador objeto9 = new Jugador("adan", "loja", 27, 93, 2010, new Equipo("Real Madrid", 30, "Madrid"), 15, 47, 22.4, 18, 25);
+        Jugador objeto = new Jugador();
+        //(int perdidas_balon, int asistencias, double km_recorridos, int pases_completados, int fallos_gol, String nombre, String apellido, int edad, int numeroGoles, int añoDebut, Equipo equipo)
+        Jugador j1 = new Jugador(6, 3, 4.4, 39, 3, "Cristiano", "Ronaldo", 33, 520, 2005, new Equipo("juventus", 20, "Turin"));
+        Jugador j2 = new Jugador(8, 5, 5.6, 56, 2, "Lionel", "Messi", 31, 600, 2001, new Equipo("Barcelona", 30, "Barcelona"));
+        Jugador j3 = new Jugador(8, 5, 7.8, 78, 4, "Neimarar", "Jr", 28, 200, 2011, new Equipo("PSG", 10, "Paris"));
+        Jugador j4 = new Jugador(8, 3, 6.7, 67, 3, "eden", "Hazgut", 27, 1590, 2010, new Equipo("Real Madrid", 40, "Madrid"));
+        Jugador j5 = new Jugador(8, 3, 6.7, 67, 3, "Fabricio", "Colomb", 27, 1590, 2010, new Equipo("Juventus", 40, "Madrid"));
+        Jugador j6 = new Jugador(8, 3, 6.7, 67, 3, "Manuela", "Putin", 27, 1590, 2010, new Equipo("Real Madrid", 40, "Barcelona"));
+        Jugador j7 = new Jugador(8, 3, 6.7, 67, 3, "Kevin", "man", 27, 1590, 2010, new Equipo("PSG", 40, "Madrid"));
+        Jugador j8 = new Jugador(8, 3, 6.7, 67, 3, "Angel", "Hazgut", 27, 1590, 2010, new Equipo("Real Madrid", 40, "Madrid"));
+        Jugador j9 = new Jugador(8, 3, 6.7, 67, 3, "Arnol", "Mar", 27, 1590, 2010, new Equipo("Barcelona", 40, "Madrid"));
+        Jugador j10 = new Jugador(8, 3, 6.7, 67, 3, "Vicente", "Roca", 27, 1590, 2010, new Equipo("Juventus", 40, "Madrid"));
 
-        List<Jugador> lista = new ArrayList<>();
-        lista.add(objeto);
-        lista.add(objeto1);
-        lista.add(objeto2);
-        lista.add(objeto3);
-        lista.add(objeto4);
-        lista.add(objeto5);
-        lista.add(objeto6);
-        lista.add(objeto7);
-        lista.add(objeto8);
-        lista.add(objeto9);
+        List<Jugador> Lista = new ArrayList<>();
 
-        int a = lista.size();
-        System.out.println();
-        objeto.leerJugador("‪C:\\Users\\ISTLOJA12\\Documents\\ejemplo.txt");
-        objeto.LeerLista("‪C:\\Users\\ISTLOJA12\\Documents\\ejemplo.txt");
-        objeto.EscribirLista("‪C:\\Users\\ISTLOJA12\\Documents\\ejemplo.txt", lista);
-        //objeto.edadMenos(lista);
+        Lista.add(j1);
+        Lista.add(j2);
+        Lista.add(j3);
+        Lista.add(j4);
+        Lista.add(j5);
+        Lista.add(j6);
+        Lista.add(j7);
+        Lista.add(j8);
+        Lista.add(j9);
+        Lista.add(j10);
+        int a = Lista.size();//guardo en la variable a esta me permite saber el tamaño de lista (.size())
+        System.out.println(a);
+        objeto.escribirLista("C:\\Users\\ISTLOJA12\\Desktop\\ejemplo2.txt", Lista);
+        objeto.leerLista("C:\\Users\\ISTLOJA12\\Desktop\\ejemplo2.txt");
+        List<Jugador> b = objeto.leerJugadores("C:\\Users\\ISTLOJA12\\Desktop\\ejemplo2.txt");
+        for (Jugador jugador : b) {
+//            System.out.println(jugador.getEdad());
+//        }
+            System.out.println("el jugador con menor edad es " + objeto.edadmenorObjeto(b).getNombre());
+            System.out.println("el juador que mas pronto debuto es " + " " + objeto.debutoP(b).getNombre() + " y su año de debut" + " " + objeto.debutoP(b).getAñoDebut());
+            System.out.println("el equipo con mas titulos es;" + " " + objeto.titulos(b).getEquipo().getNombre() + " con; " + " " + objeto.titulos(b).getEquipo().getNumerotitulos() + " " + "titulos");
+            System.out.println("EL JUGADOR MAS eficiencia ES " + objeto.mayorEficiencia(b).getNombre());
+            System.out.println("EL JUGADOR MAS acierto ES" + objeto.mayorAcierto(b).getNombre());
+            System.out.println("EL JUGADOR MAS efectividad ES" + objeto.mayorEfectividad(b).getNombre());
+            System.out.println("jugador con menos caracteres " + objeto.jugadorMenoscaracteres(Lista).getNombre() + " " + objeto.jugadorMenoscaracteres(Lista).getApellido());
+            System.out.println("jugador con mas caracteres " + objeto.jugadorMascaracteres(Lista).getNombre() + " " + objeto.jugadorMascaracteres(Lista).getApellido());
 
-        List<Jugador> al = objeto.leerJugador("‪C:\\Users\\ISTLOJA12\\Documents\\ejemplo.txt");
-        System.out.println(objeto.debut(al).getAñodedebut());
-        //System.out.println(objeto.titulos(al).getNumerodegoles());
-        System.out.println("el jugador con mas porcentaje acierto" + objeto.maPorcentajedeAcierto(lista).getNombre());
-        System.out.println("el jugador conmas efectividad" + objeto.maPorcentajeefectividad(lista).getNombre());
-        System.out.println("mas caracteres" + objeto.mayorCaracter(lista).getNombre() + objeto.mayorCaracter(lista).getApellido());
-        System.out.println("menor caracteres" + objeto.menorCaracter(lista).getNombre() + objeto.menorCaracter(lista).getApellido());
+        }
     }
 }

@@ -9,12 +9,13 @@ import java.io.Serializable;
 
 /**
  *
- * @author ISTLOJA12
+ * @author ist loja
  */
 public class Equipo implements Serializable {
+     private String nombre;
 
-    private String nombre;
     private int numerotitulos;
+
     private String ciudad;
 
     public Equipo() {
@@ -25,7 +26,6 @@ public class Equipo implements Serializable {
         this.numerotitulos = numerotitulos;
         this.ciudad = ciudad;
     }
-    
 
     public String getNombre() {
         return nombre;
@@ -50,5 +50,8 @@ public class Equipo implements Serializable {
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
     }
+
+  
+    
     
 }

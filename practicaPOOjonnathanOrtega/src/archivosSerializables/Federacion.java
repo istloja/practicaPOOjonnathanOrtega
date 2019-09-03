@@ -5,7 +5,6 @@
  */
 package archivosSerializables;
 
-
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -16,21 +15,14 @@ import java.util.List;
 
 /**
  *
- * @author ISTLOJA12
+ * @author ist loja
  */
-public class Federacion implements Serializable{
-
-    private String nombre;
+public class Federacion implements Serializable {
+     private String nombre;
     private String pais;
-    private int numeroequipo;
+    private int numEquipos;
 
     public Federacion() {
-    }
-
-    public Federacion(String nombre, String pais, int numeroequipo) {
-        this.nombre = nombre;
-        this.pais = pais;
-        this.numeroequipo = numeroequipo;
     }
 
     public String getNombre() {
@@ -49,14 +41,21 @@ public class Federacion implements Serializable{
         this.pais = pais;
     }
 
-    public int getNumeroequipo() {
-        return numeroequipo;
+    public int getNumEquipos() {
+        return numEquipos;
     }
 
-    public void setNumeroequipo(int numeroequipo) {
-        this.numeroequipo = numeroequipo;
+    public void setNumEquipos(int numEquipos) {
+        this.numEquipos = numEquipos;
     }
-     public void escribirLista(String direccion, List<Federacion> lista) {
+
+    public Federacion(String nombre, String pais, int numEquipos) {
+        this.nombre = nombre;
+        this.pais = pais;
+        this.numEquipos = numEquipos;
+    }
+
+    public void escribirLista(String direccion, List<Federacion> lista) {
         try {
             ObjectOutputStream escribi = new ObjectOutputStream(new FileOutputStream(direccion));
             for (Federacion jugador : lista) {
@@ -68,14 +67,15 @@ public class Federacion implements Serializable{
 
         }
     }
-public Federacion masnumEquipo(List<Federacion> lista) {
-        Federacion maasequipo = lista.get(0);
+
+    public Federacion masnumEquipo(List<Federacion> lista) {
+        Federacion masnumequipo = lista.get(0);
         for (Federacion federacion : lista) {
-            if (federacion.getNumeroequipo()> maasequipo.getNumeroequipo()) {
-                maasequipo = federacion;
+            if (federacion.getNumEquipos() > masnumequipo.getNumEquipos()) {
+                masnumequipo = federacion;
             }
         }
-        return maasequipo;
+        return masnumequipo;
     }
 
     public List<Federacion> leerfede(String url) {
@@ -110,8 +110,11 @@ public Federacion masnumEquipo(List<Federacion> lista) {
 
         int a = Lista.size();
         System.out.println(a);
-        objeto.escribirLista("‪‪C:\\Users\\ISTLOJA12\\Desktop/1.txt", Lista);
-        List<Federacion> b = objeto.leerfede("‪‪C:\\Users\\ISTLOJA12\\Desktop/1.txt");
-        System.out.println("el equipo mas grande es la federacion " + objeto.masnumEquipo(b).getNombre() + " con " + objeto.masnumEquipo(b).getNumeroequipo()+ " Equipos");
+        //objeto.escribirLista("C:\\Users\\ist loja\\Desktop\\federacion.txt", Lista);
+        List<Federacion> b = objeto.leerfede("C:\\Users\\ISTLOJA12\\Desktop\\federacion.txt");
+        System.out.println("el equipo mas grande es la federacion " + objeto.masnumEquipo(b).getNombre() + " con " + objeto.masnumEquipo(b).getNumEquipos() + " Equipos");
     }
 }
+
+
+    
