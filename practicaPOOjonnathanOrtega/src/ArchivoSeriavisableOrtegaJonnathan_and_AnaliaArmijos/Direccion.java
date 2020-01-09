@@ -28,25 +28,4 @@ public class Direccion implements Serializable{
     public String getCiudad() {
         return ciudad;
     }
-
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
-    }
-
-    public String getCalle() {
-        return calle;
-    }
-
-    public void setCalle(String calle) {
-        this.calle = calle;
-    }
-
-    public int getNumcasa() {
-        return numcasa;
-    }
-
-    public void setNumcasa(int numcasa) {
-        this.numcasa = numcasa;
-    }
-    
 }

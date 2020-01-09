@@ -3,19 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package practicapoojonnathanortega;
+package Clases_Abstractas_interface;
 
 /**
  *
  * @author ISTLOJA12
  */
-public class PracticaPOOjonnathanOrtega {
-
-    /**
-     * @param args the command line arguments
-     */
+public class Main {
     public static void main(String[] args) {
-        // TODO code application logic here
+        Carro c = new Carro();
+        Bicicleta b = new Bicicleta();
+        
+        c.avanza();
+        b.avanza();
+        c.detiene();
+        b.detiene();
+        b.sentarse();
         
     }
     
