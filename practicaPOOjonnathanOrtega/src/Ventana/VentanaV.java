@@ -25,7 +25,7 @@ public class VentanaV {
     JPanel p= new JPanel();
     JButton b= new JButton("ACEPTAR");
     JLabel l= new  JLabel("Agregar Texto");
-    JTextField t= new JTextField(20);
+    JTextField t= new JTextField(50);
     JTextField t1= new JTextField(20);
     
     public VentanaV(){ //craer un metodo
@@ -59,6 +59,10 @@ public class VentanaV {
         p.add(t);
         p.add(b);
         p.add(t1);
+    }
+     public static void main(String[] args) {
+        VentanaV v=new VentanaV(); // llamar el metodo
+        
     }
     
 }
