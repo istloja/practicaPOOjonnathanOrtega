@@ -358,9 +358,9 @@ public class Jugador implements Serializable {
         Lista.add(j10);
         int a = Lista.size();//guardo en la variable a esta me permite saber el tamaño de lista (.size())
         System.out.println(a);
-        objeto.escribirLista("C:\\Users\\ISTLOJA12\\Desktop\\ejemplo2.txt", Lista);
-        objeto.leerLista("C:\\Users\\ISTLOJA12\\Desktop\\ejemplo2.txt");
-        List<Jugador> b = objeto.leerJugadores("C:\\Users\\ISTLOJA12\\Desktop\\ejemplo2.txt");
+        objeto.escribirLista("‪C:\\Users\\jhonny\\Desktop\\jona.txt", Lista);
+        objeto.leerLista("‪C:\\Users\\jhonny\\Desktop\\jona.txt");
+        List<Jugador> b = objeto.leerJugadores("‪C:\\Users\\jhonny\\Desktop\\jona.txt");
         for (Jugador jugador : b) {
 //            System.out.println(jugador.getEdad());
 //        }

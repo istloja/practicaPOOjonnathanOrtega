@@ -108,7 +108,7 @@ public class Federacion implements Serializable {
         Lista.add(f3);
         Lista.add(f4);
 
-        int a = Lista.size();
+              int a = Lista.size();
         System.out.println(a);
         //objeto.escribirLista("C:\\Users\\ist loja\\Desktop\\federacion.txt", Lista);
         List<Federacion> b = objeto.leerfede("C:\\Users\\ISTLOJA12\\Desktop\\federacion.txt");

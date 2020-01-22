@@ -114,7 +114,7 @@ public class LeeryEscribir {
         //objeto.leerArchivo("C:\\Users\\ISTLOJA12\\Desktop/ejemplo.txt");
     
    // objeto.leerLista("C:\\Users\\ISTLOJA12\\Desktop/ejemplo.txt");
-    List<Persona>b=objeto.leerPersona("C:\\Users\\ISTLOJA12\\Desktop/ejemplo.txt");
+    List<Persona>b=objeto.leerPersona("‪C:\\Users\\jhonny\\Desktop\\ejemplo.txt");
     for (Persona persona:b){
         System.out.println("la edad es:"+persona.getEdad());
     }
