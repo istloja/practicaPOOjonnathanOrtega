@@ -28,113 +28,112 @@ import javax.swing.JTextField;
  */
 public class VentanaPrincipal extends JFrame {
 
+    JLabel l = new JLabel("escoje que quieres adivinar?");
     JTextField t = new JTextField(15);
-    JLabel l = new JLabel("que numero de semana estamos?");
     JButton b = new JButton("chequear");
     JPanel p = new JPanel();
+    VentanaResultado r;
     JComboBox combo = new JComboBox();
 
     public VentanaPrincipal() {
         super("ventana principal");
-        setSize(200, 300);
-//        pack();
+        setSize(300, 200);
         setLocation(300, 300);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-        agregarComponentes();
+
+        agregarComnponentes();
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public void agregarComponentes() {
+    public void agregarComnponentes() {
         getContentPane().add(p);
         p.setLayout(new GridBagLayout());
-
         GridBagConstraints c = new GridBagConstraints();
         c.gridx = 0;
         c.gridy = 0;
         c.insets = new Insets(5, 5, 5, 5);
 
         p.add(l, c);
-        c.gridy = 2;
+        c.gridy = 1;
 
         p.add(t, c);
+        c.gridy = 2;
 
-        c.weighty = 2;
         p.add(b, c);
 
-        Vector panel = new Vector();
-        panel.addElement("semana");
-        panel.addElement("año");
-        panel.addElement("mes");
-        panel.addElement("dia");
-        combo = new JComboBox(panel);
-        combo.setPreferredSize(new Dimension(200, 25));
+        String[] pa = {"semana","año", "mes", "dia"};
+
+        combo = new JComboBox(pa);
+        combo.setPreferredSize(new Dimension(120, 20));
         p.add(combo);
-        p.add(l);
-        p.add(t);
-        p.add(b);
 
         b.addActionListener(new ActionListener() {
 
-            @Override
             public void actionPerformed(ActionEvent e) {
-
                 if (!t.getText().isEmpty()) {
+
                     int a = checkCombo(combo.getSelectedIndex());
-                    comprobar();
+
                 } else {
-                    JOptionPane.showMessageDialog(null, "agrega el numero de la semana");
+                    JOptionPane.showMessageDialog(null, "agrega" + "el numero");
                 }
 
             }
+
         });
 
     }
 
-    public void comprobar() {
-        try {
-            int num = Integer.parseInt(t.getText());
-            Calendar cal = Calendar.getInstance();
-            int c = cal.get(Calendar.WEEK_OF_YEAR);
-            if (num == c) {
-                b.setEnabled(false);
-                VentanaResultado r = new VentanaResultado();
-                r.lr.setText("correcto ganaste");
-                r.lr.setForeground(Color.green);
-                r.br.setText("terminar");
-            } else {
-                b.setEnabled(false);
-                VentanaResultado r = new VentanaResultado();
-                r.lr.setText("incorrecto perdiste");
-                r.lr.setForeground(Color.red);
-                r.br.setText("tratar de nuevo");
-
-            }
-
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "solo ponga numero para jugaer");
-
-        }
-    }
-
     public int checkCombo(int a) {
         int c = 0;
-        if (a == 0) {
+
+         if (a == 0) {
             Calendar cal = Calendar.getInstance();
             c = cal.get(Calendar.WEEK_OF_YEAR);
         }
         if (a == 1) {
             Calendar cal = Calendar.getInstance();
+            c = cal.get(Calendar.YEAR);
+        }
+        if (a ==2) {
+            Calendar cal = Calendar.getInstance();
+            c = cal.get(Calendar.JANUARY);
+
+        }
+        if (a == 3) {
+            Calendar cal = Calendar.getInstance();
             c = cal.get(Calendar.DAY_OF_YEAR);
         }
-         if (a == 2) {
-            Calendar cal = Calendar.getInstance();
-            c = cal.get(Calendar.YEAR);
-        
-         }
-          return c;
+
+        try {
+            int num = Integer.parseInt(t.getText());
+
+            if (num == c) {
+                b.setEnabled(false);
+                VentanaResultado r = new VentanaResultado();
+                r.lr.setText("CORRECTO GANASTE");
+                r.lr.setForeground(Color.green);
+                r.br.setText("terminar");
+            } else {
+                b.setEnabled(false);
+                r = new VentanaResultado();
+                r.lr.setText("INCORRECTO PERDISTES");
+                r.lr.setForeground(Color.red);
+                r.br.setText("REINTENTAR");
+
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "solo permite numeros");
+
+        }
+        return c;
+
     }
 
     public static void main(String[] args) {
         VentanaPrincipal va = new VentanaPrincipal();
+
     }
 }
