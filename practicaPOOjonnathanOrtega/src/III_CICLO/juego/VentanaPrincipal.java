@@ -37,7 +37,7 @@ public class VentanaPrincipal extends JFrame {
 
     public VentanaPrincipal() {
         super("ventana principal");
-        setSize(300, 200);
+        setSize(350, 350);
         setLocation(300, 300);
         setVisible(true);
 
@@ -62,9 +62,9 @@ public class VentanaPrincipal extends JFrame {
 
         p.add(b, c);
 
-        String[] pa = {"semana","año", "mes", "dia"};
+        String[] pr = {"semana", "año", "mes", "dia"};
 
-        combo = new JComboBox(pa);
+        combo = new JComboBox(pr);
         combo.setPreferredSize(new Dimension(120, 20));
         p.add(combo);
 
@@ -88,7 +88,7 @@ public class VentanaPrincipal extends JFrame {
     public int checkCombo(int a) {
         int c = 0;
 
-         if (a == 0) {
+        if (a == 0) {
             Calendar cal = Calendar.getInstance();
             c = cal.get(Calendar.WEEK_OF_YEAR);
         }
@@ -96,7 +96,7 @@ public class VentanaPrincipal extends JFrame {
             Calendar cal = Calendar.getInstance();
             c = cal.get(Calendar.YEAR);
         }
-        if (a ==2) {
+        if (a == 2) {
             Calendar cal = Calendar.getInstance();
             c = cal.get(Calendar.JANUARY);
 
@@ -116,7 +116,7 @@ public class VentanaPrincipal extends JFrame {
                 r.lr.setForeground(Color.green);
                 r.br.setText("terminar");
             } else {
-                b.setEnabled(false);
+                //b.setEnabled(false);
                 r = new VentanaResultado();
                 r.lr.setText("INCORRECTO PERDISTES");
                 r.lr.setForeground(Color.red);
