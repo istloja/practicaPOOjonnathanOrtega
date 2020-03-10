@@ -3,15 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package recuperacion;
+package Main;
+
+import Vista.Menu;
 
 /**
  *
- * @author Jhonny_Ortega
+ * @author John Puglla
  */
-public class Main {
-     public static void main(String[] args) {
-        Recuperacion n = new Recuperacion();
+public class Ejecutar {
+    
+    
+    public static void main(String[] args) {
+        new Menu();
         
     }
     
