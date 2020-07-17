@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PrimeFaces</title>
+            </f:facet>
+            
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    Header
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                    Footer
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
+                    <p:menu>
+                        <p:submenu label="Resources">
+                            <p:menuitem value="Demo" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
+                            <p:menuitem value="Documentation" url="http://www.primefaces.org/documentation.html" />
+                            <p:menuitem value="Forum" url="http://forum.primefaces.org/" />
+                            <p:menuitem value="Themes" url="http://www.primefaces.org/themes.html" />
+
+                        </p:submenu>
+
+                    </p:menu>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                    <p:menubar>
+        <p:submenu label="Archivo" icon="pi pi-file">
+            <p:submenu label="Nuevo" icon="pi pi-briefcase">
+                <p:menuitem value="Proyecto" url="#" />
+                <p:menuitem value="Otro" url="#" />
+            </p:submenu>
+            </p:submenu>
+                        <p:submenu label="Editar" icon="pi pi-pencil">
+            <p:menuitem value="Todo" url="#" icon="pi pi-angle-double-left" />
+            <p:menuitem value="Parrafo" url="#" icon="pi pi-angle-double-right" />
+                        </p:submenu>
+        
+            </p:menubar>
+                    
+                <p:panelGrid columns="2">
+    <f:facet name="header">
+        <p:graphicImage name="demo/images/misc/kobe.png" />
+    </f:facet>
+     
+    <h:outputText value="Name:" />
+    <h:outputText value="JonnathaN Ortega" />
+     
+    <h:outputText value="Team:" />
+    <h:outputText value="Cuenca" />
+     
+    <h:outputText value="Position:" />
+    <h:outputText value="carril derecho" />
+     
+    <h:outputText value="Number:" />
+    <h:outputText value="17" />
+</p:panelGrid>
+                    
+                     <p:toggleSwitch value="#{selectBooleanView.value1}" />
+         
+        <h:outputText value="Ajax: " />
+        <p:toggleSwitch value="#{selectBooleanView.value2}">
+            <p:ajax listener="#{selectBooleanView.addMessage}" update="" />
+        </p:toggleSwitch>
+         <p:outputLabel for="chips" value="Values: " />
+    <p:chips id="chips" />
+    
+    
+     <p:selectOneListbox id="basic" value="#{selectOneView.option}">
+            <f:selectItem itemLabel="primer puesto" itemValue="1" />
+            <f:selectItem itemLabel="segundo puesto" itemValue="2" />
+            <f:selectItem itemLabel="tercer puesto" itemValue="3" />
+            
+        </p:selectOneListbox>
+    
+    
+   
+                     
+                    
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+
